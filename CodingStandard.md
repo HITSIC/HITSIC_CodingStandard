@@ -857,11 +857,31 @@ C.M. @hit	2019.10.24
 
 1. 对于C语言中需要创建多个实例的项目，应将每个实例共有的数据结构抽象为结构体，并提供一组函数用于操作这些数据结构。
 
-> 示例1：
->
-> 参见K66 MCUXpresso SDK中的各种Handle。
+	> 示例1：
+	>
+	> 参见K66 MCUXpresso SDK中的各种Handle。
 
+2. 当使用typedef方式定义结构体，或结构体内含有类型为其本身的指针时，应采用以下两种写法中的一种：
 
+   ```
+   /********** 示例1 **********/
+   
+   typedef struct _student student_t;
+   struct _student{
+       student_t *p;
+       int id;
+   };
+   
+   /********** 示例2 **********/
+   
+   struct _student;
+   typedef struct _student{
+       struct _student *p;
+       int id;
+   }student_t;
+   ```
+
+   
 
 #### 5.3. （C++语言）类的使用
 
